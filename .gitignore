@@ -5,3 +5,9 @@
 
 # emacs temp files
 \#*\#
+
+# credentials
+.git-credentials
+
+# elpa
+elpa/
