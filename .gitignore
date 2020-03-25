@@ -9,5 +9,12 @@
 # credentials
 .git-credentials
 
-# elpa
+# elpa packages
 elpa/
+
+# eshell files
+eshell/history
+eshell/lastdir
+
+# server auth directory
+/server/
