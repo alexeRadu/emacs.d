@@ -132,7 +132,5 @@
 (use-package magit
   :ensure t
   :defer t
-  :config
-  (progn
-    (global-set-key (kbd "C-x g") 'magit-status)
-    ))
+  :bind (("C-x g" . magit-status))
+  )
