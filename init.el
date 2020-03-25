@@ -10,7 +10,7 @@
  '(custom-enabled-themes nil)
  '(package-selected-packages
    (quote
-    (svg company counsel-gtags ggtags neotree avy counsel swiper projectile org-bullets use-package))))
+    (magit svg company counsel-gtags ggtags neotree avy counsel swiper projectile org-bullets use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -128,3 +128,11 @@
     (setq company-tooltip-align-annotations t
 	  company-show-numbers t))
   :diminish company-mode)
+
+(use-package magit
+  :ensure t
+  :defer t
+  :config
+  (progn
+    (global-set-key (kbd "C-x g") 'magit-status)
+    ))
