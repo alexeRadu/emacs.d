@@ -18,3 +18,11 @@ eshell/lastdir
 
 # server auth directory
 /server/
+
+# projectile files
+projectile-bookmarks.eld
+projectile.cache
+
+# magit files
+recentf
+transient
