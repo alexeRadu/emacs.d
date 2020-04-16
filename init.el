@@ -160,3 +160,8 @@
 
 ;; TODO: various customizations that exist @ https://www.emacswiki.org/emacs/LineNumbers.
 ;; TODO: selectively enable line-numbers depending on the file type.
+
+;; Highlight current line
+;;
+;; TODO: change color of current line
+(global-hl-line-mode 1)
