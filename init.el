@@ -10,7 +10,7 @@
  '(custom-enabled-themes nil)
  '(package-selected-packages
    (quote
-    (magit svg company counsel-gtags ggtags neotree avy counsel swiper projectile org-bullets use-package))))
+    (evil magit svg company counsel-gtags ggtags neotree avy counsel swiper projectile org-bullets use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -134,3 +134,18 @@
   :defer t
   :bind (("C-x g" . magit-status))
   )
+
+;; Evil mode
+;;
+;; This is the recommended way of installing the package (instead of use-package).
+;; TODO: Should revise this later to see if use-package could be used.
+(unless (package-installed-p 'evil)
+  (package-install 'evil))
+
+(require 'evil)
+(evil-mode 1)
+
+;; TODO: further customize evil mode and integrate it better with emacs. For example
+;; the command mode doesn't seem to fit well with emacs M-x. Maybe look for other
+;; similar keybinding modes for a custom experience.
+
