@@ -149,3 +149,13 @@
 ;; the command mode doesn't seem to fit well with emacs M-x. Maybe look for other
 ;; similar keybinding modes for a custom experience.
 
+;; Line numbers
+;;
+;; Enable linum-mode for version of emacs >= 26.0.50.
+;; TODO: for version < 25.0.50 should either look for a solution or throw a (warning)
+;; message.
+(when (version<= "26.0.50" emacs-version)
+  (global-display-line-numbers-mode))
+
+;; TODO: various customizations that exist @ https://www.emacswiki.org/emacs/LineNumbers.
+;; TODO: selectively enable line-numbers depending on the file type.
