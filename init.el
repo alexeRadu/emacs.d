@@ -10,7 +10,7 @@
  '(custom-enabled-themes nil)
  '(package-selected-packages
    (quote
-    (evil magit svg company counsel-gtags ggtags neotree avy counsel swiper projectile org-bullets use-package))))
+    (fill-column-indicator evil magit svg company counsel-gtags ggtags neotree avy counsel swiper projectile org-bullets use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -175,7 +175,7 @@
 ;; I use fill-column-indicator.
 ;; TODO: there a lot of settings, customizations and issues. To read and see additional
 ;; usefull settings.
-(unless (package-installed-p 'evil)
+(unless (package-installed-p 'fill-column-indicator)
   (package-install 'fill-column-indicator))
 
 (require 'fill-column-indicator)
