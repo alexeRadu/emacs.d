@@ -155,6 +155,7 @@
 ;; TODO: for version < 25.0.50 should either look for a solution or throw a (warning)
 ;; message.
 (when (version<= "26.0.50" emacs-version)
+  (setq display-line-numbers-type 'relative)
   (global-display-line-numbers-mode))
 
 ;; TODO: various customizations that exist @ https://www.emacswiki.org/emacs/LineNumbers.
