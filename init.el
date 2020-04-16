@@ -165,3 +165,16 @@
 ;;
 ;; TODO: change color of current line
 (global-hl-line-mode 1)
+
+;; Ruler at 80 chars
+;;
+;; I use fill-column-indicator.
+;; TODO: there a lot of settings, customizations and issues. To read and see additional
+;; usefull settings.
+(unless (package-installed-p 'evil)
+  (package-install 'fill-column-indicator))
+
+(require 'fill-column-indicator)
+(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
+(global-fci-mode 1)
+(setq fci-rule-column 80)
