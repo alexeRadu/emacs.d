@@ -135,6 +135,7 @@
   :bind (("C-x g" . magit-status))
   )
 
+;; -----------------------------------------------------------------------------
 ;; Evil mode
 ;;
 ;; This is the recommended way of installing the package (instead of use-package).
@@ -149,6 +150,7 @@
 ;; the command mode doesn't seem to fit well with emacs M-x. Maybe look for other
 ;; similar keybinding modes for a custom experience.
 
+;; -----------------------------------------------------------------------------
 ;; Line numbers
 ;;
 ;; Enable linum-mode for version of emacs >= 26.0.50.
@@ -161,11 +163,13 @@
 ;; TODO: various customizations that exist @ https://www.emacswiki.org/emacs/LineNumbers.
 ;; TODO: selectively enable line-numbers depending on the file type.
 
+;; -----------------------------------------------------------------------------
 ;; Highlight current line
 ;;
 ;; TODO: change color of current line
 (global-hl-line-mode 1)
 
+;; -----------------------------------------------------------------------------
 ;; Ruler at 80 chars
 ;;
 ;; I use fill-column-indicator.
