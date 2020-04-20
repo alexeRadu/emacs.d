@@ -10,7 +10,7 @@
  '(custom-enabled-themes nil)
  '(package-selected-packages
    (quote
-    (fill-column-indicator evil magit svg company counsel-gtags ggtags neotree avy counsel swiper projectile org-bullets use-package))))
+    (evil-magit fill-column-indicator evil magit svg company counsel-gtags ggtags neotree avy counsel swiper projectile org-bullets use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -134,6 +134,11 @@
   :defer t
   :bind (("C-x g" . magit-status))
   )
+
+(unless (package-installed-p 'evil-magit)
+  (package-install 'evil-magit))
+
+(require 'evil-magit)
 
 ;; -----------------------------------------------------------------------------
 ;; Evil mode
