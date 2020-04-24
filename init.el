@@ -22,6 +22,10 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
+;; Unbind 'C-x f'
+;; I almost always hit this keybinding when I try to open a new file
+(global-unset-key "\C-xf")
+
 (if (display-graphic-p)
     (progn
       (setq initial-frame-alist
