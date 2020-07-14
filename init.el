@@ -173,12 +173,6 @@
 ;; TODO: selectively enable line-numbers depending on the file type.
 
 ;; -----------------------------------------------------------------------------
-;; Highlight current line
-;;
-;; TODO: change color of current line
-(global-hl-line-mode 1)
-
-;; -----------------------------------------------------------------------------
 ;; Ruler at 80 chars
 ;;
 ;; I use fill-column-indicator.
