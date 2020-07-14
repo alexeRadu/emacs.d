@@ -139,26 +139,6 @@
   :bind (("C-x g" . magit-status))
   )
 
-(unless (package-installed-p 'evil-magit)
-  (package-install 'evil-magit))
-
-(require 'evil-magit)
-
-;; -----------------------------------------------------------------------------
-;; Evil mode
-;;
-;; This is the recommended way of installing the package (instead of use-package).
-;; TODO: Should revise this later to see if use-package could be used.
-(unless (package-installed-p 'evil)
-  (package-install 'evil))
-
-(require 'evil)
-(evil-mode 1)
-
-;; TODO: further customize evil mode and integrate it better with emacs. For example
-;; the command mode doesn't seem to fit well with emacs M-x. Maybe look for other
-;; similar keybinding modes for a custom experience.
-
 ;; -----------------------------------------------------------------------------
 ;; Line numbers
 ;;
