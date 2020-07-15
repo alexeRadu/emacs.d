@@ -22,6 +22,9 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
+;; change cursor shape to be a vertical line to better match modern editors
+(setq-default cursor-type 'bar)
+
 ;; Unbind 'C-x f'
 ;; I almost always hit this keybinding when I try to open a new file
 (global-unset-key "\C-xf")
