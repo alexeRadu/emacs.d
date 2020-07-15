@@ -16,6 +16,7 @@ elpa/
 # eshell files
 eshell/history
 eshell/lastdir
+eshell/**
 
 # server auth directory
 /server/
