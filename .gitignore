@@ -28,3 +28,6 @@ projectile.cache
 # magit files
 recentf
 transient
+
+# multiple cursors files
+.mc-lists.el
