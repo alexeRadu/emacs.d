@@ -171,3 +171,19 @@
 (define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
 (global-fci-mode 1)
 (setq fci-rule-column 80)
+
+;; Dired sorting directories first
+;; TODO: This code has been taken from:
+;;       https://www.emacswiki.org/emacs/DiredSortDirectoriesFirst
+;;       Understand this code and look into link from the page
+(defun my/dired-sort ()
+  "Sort dired listings with directories first"
+  (save-excursion
+    (let (buffer-read-only)
+      (forward-line 2)
+      (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
+    (set-buffer-modified-p nil)))
+
+(defadvice dired-readin
+    (after dired-after-updating-hook first () activate)
+  (my/dired-sort))
