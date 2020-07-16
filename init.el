@@ -22,6 +22,9 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
+;; disable the bell
+(setq ring-bell-function 'ignore)
+
 ;; change cursor shape to be a vertical line to better match modern editors
 (setq-default cursor-type 'bar)
 
