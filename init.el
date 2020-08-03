@@ -179,14 +179,22 @@
 ;; TODO: This code has been taken from:
 ;;       https://www.emacswiki.org/emacs/DiredSortDirectoriesFirst
 ;;       Understand this code and look into link from the page
-(defun my/dired-sort ()
-  "Sort dired listings with directories first"
-  (save-excursion
-    (let (buffer-read-only)
-      (forward-line 2)
-      (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
-    (set-buffer-modified-p nil)))
+;; (defun my/dired-sort ()
+;;   "Sort dired listings with directories first"
+;;   (save-excursion
+;;     (let (buffer-read-only)
+;;       (forward-line 2)
+;;       (sort-regexp-fields t "^.*$" "[ ]*." (point) (point-max)))
+;;     (set-buffer-modified-p nil)))
 
-(defadvice dired-readin
-    (after dired-after-updating-hook first () activate)
-  (my/dired-sort))
+;; (defadvice dired-readin
+;;     (after dired-after-updating-hook first () activate)
+;;   (my/dired-sort))
+
+;; (setq dired-listing-switches "-1aq --group-directories-first")
+
+(find-file "~/.emacs.d/learn/xo.el")
+(eval-buffer)
+(split-window-right)
+(other-window 1)
+(xo-game)
