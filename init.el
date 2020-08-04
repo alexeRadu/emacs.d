@@ -18,6 +18,9 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; make "~/.emacs.d/lisp" directory as the primary location of my elisp code
+(push "~/.emacs.d/lisp" load-path)
+
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
