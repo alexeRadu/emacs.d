@@ -192,9 +192,3 @@
 ;;   (my/dired-sort))
 
 ;; (setq dired-listing-switches "-1aq --group-directories-first")
-
-(find-file "~/.emacs.d/learn/xo.el")
-(eval-buffer)
-(split-window-right)
-(other-window 1)
-(xo-game)
