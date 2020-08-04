@@ -223,4 +223,4 @@
   (define-key xo-mode-map "n" 'xo-new-game)
   (define-key xo-mode-map "p" 'xo-peek-props))
 
-(provide 'xo-game)
+(provide 'xo)
