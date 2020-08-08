@@ -1,8 +1,19 @@
 (defvar vi-mode nil)
 (defvar vi-insert-map nil)
 (defvar vi-normal-map nil)
-(defvar vi-current-state nil)
+(defvar vi-mode-line-state nil)
 (defvar vi-unload-function nil)
+
+(defun vi-init-modeline ()
+  (unless (member 'vi-mode-line-state mode-line-format)
+    (setq mode-line-format
+	(append (list (car mode-line-format) 'vi-mode-line-state)
+		(cdr mode-line-format)))))
+
+(defun vi-clear-modeline ()
+  (when (member 'vi-mode-line-state mode-line-format)
+    (setq mode-line-format
+	(cons (car mode-line-format) (cdr (cdr mode-line-format))))))
 
 (defun vi-initialize-normal-map ()
   (unless vi-normal-map
@@ -29,13 +40,13 @@
   (interactive)
   (vi-remove-all-minor-mode-maps)
   (vi-add-minor-mode-map vi-normal-map)
-  (setq vi-current-state "normal"))
+  (setq vi-mode-line-state "normal"))
 
 (defun vi-switch-to-insert-state ()
   (interactive)
   (vi-remove-all-minor-mode-maps)
   (vi-add-minor-mode-map vi-insert-map)
-  (setq vi-current-state "insert"))
+  (setq vi-mode-line-state "insert"))
 
 (defun vi-mode ()
   (interactive)
@@ -44,11 +55,11 @@
     (vi-initialize-normal-map)
     (vi-initialize-insert-map)
     (vi-add-minor-mode-map vi-normal-map)
-    (setq vi-current-state "normal")
-    (add-hook 'vi-unload-hooks 'vi-remove-all-minor-mode-maps)))
+    (vi-init-modeline)
+    (setq vi-mode-line-state "normal")))
 
 (defun vi-unload-function ()
-  (message "vi unload")
+  (vi-clear-modeline)
   (vi-remove-all-minor-mode-maps))
 
 (provide 'vi)
