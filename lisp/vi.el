@@ -19,11 +19,17 @@
   (unless vi-normal-map
     (setq vi-normal-map (make-keymap))
     (define-key vi-normal-map "l" 'forward-char)
-    (define-key vi-normal-map "h" 'backward-char)))
+    (define-key vi-normal-map "h" 'backward-char)
+    (define-key vi-normal-map "j" 'next-line)
+    (define-key vi-normal-map "k" 'previous-line)
+    (define-key vi-normal-map "i" 'vi-switch-to-insert-state)
+    (define-key vi-normal-map "x" 'delete-char)
+    (define-key vi-normal-map "dd" 'kill-whole-line)))
 
 (defun vi-initialize-insert-map ()
   (unless vi-insert-map
-    (setq vi-insert-map (make-keymap))))
+    (setq vi-insert-map (make-keymap))
+    (define-key vi-insert-map [escape] 'vi-switch-to-normal-state)))
 
 (defun vi-add-minor-mode-map (map)
   (push (cons 'vi-mode map) minor-mode-map-alist))
@@ -40,13 +46,15 @@
   (interactive)
   (vi-remove-all-minor-mode-maps)
   (vi-add-minor-mode-map vi-normal-map)
-  (setq vi-mode-line-state "normal"))
+  (setq vi-mode-line-state "normal")
+  (force-mode-line-update))
 
 (defun vi-switch-to-insert-state ()
   (interactive)
   (vi-remove-all-minor-mode-maps)
   (vi-add-minor-mode-map vi-insert-map)
-  (setq vi-mode-line-state "insert"))
+  (setq vi-mode-line-state "insert")
+  (force-mode-line-update))
 
 (defun vi-mode ()
   (interactive)
