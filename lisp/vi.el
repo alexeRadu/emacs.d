@@ -56,8 +56,17 @@
   (setq vi-mode-line-state "insert")
   (force-mode-line-update))
 
-(defun vi-mode ()
-  (interactive)
+(defun vi-mode (&optional arg)
+  (interactive (list (or current-prefix-arg 'toggle)))
+  (let ((enable
+	 (if (eq arg 'toggle)
+	     (not vi-mode)
+	   (> (prefix-numeric-value arg) 0))))
+    (if enable
+	(vi-mode-enable)
+      (vi-mode-disable))))
+
+(defun vi-mode-enable ()
   (unless vi-mode
     (setq vi-mode t)
     (vi-initialize-normal-map)
@@ -65,6 +74,12 @@
     (vi-add-minor-mode-map vi-normal-map)
     (vi-init-modeline)
     (setq vi-mode-line-state "normal")))
+
+(defun vi-mode-disable ()
+  (when vi-mode
+    (setq vi-mode nil)
+    (vi-clear-modeline)
+    (vi-remove-all-minor-mode-maps)))
 
 (defun vi-unload-function ()
   (vi-clear-modeline)
