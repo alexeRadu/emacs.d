@@ -5,15 +5,24 @@
 (defvar vi-unload-function nil)
 
 (defun vi-init-modeline ()
-  (unless (member 'vi-mode-line-state mode-line-format)
-    (setq mode-line-format
-	(append (list (car mode-line-format) 'vi-mode-line-state)
-		(cdr mode-line-format)))))
+  (dolist (buffer (buffer-list))
+    (with-current-buffer buffer
+      (unless (member 'vi-mode-line-state mode-line-format)
+	(setq mode-line-format
+	      (append (list (car mode-line-format) 'vi-mode-line-state)
+		      (cdr mode-line-format)))))))
 
 (defun vi-clear-modeline ()
   (when (member 'vi-mode-line-state mode-line-format)
     (setq mode-line-format
-	(cons (car mode-line-format) (cdr (cdr mode-line-format))))))
+	  (cons (car mode-line-format) (cdr (cdr mode-line-format))))))
+
+(defun vi-mode-line-change-state (name)
+  (unless (eq vi-mode-line-state name)
+    (setq vi-mode-line-state name)
+    (dolist (buffer (buffer-list))
+      (with-current-buffer buffer
+	(force-mode-line-update)))))
 
 (defun vi-initialize-normal-map ()
   (unless vi-normal-map
@@ -46,15 +55,13 @@
   (interactive)
   (vi-remove-all-minor-mode-maps)
   (vi-add-minor-mode-map vi-normal-map)
-  (setq vi-mode-line-state "normal")
-  (force-mode-line-update))
+  (vi-mode-line-change-state "normal"))
 
 (defun vi-switch-to-insert-state ()
   (interactive)
   (vi-remove-all-minor-mode-maps)
   (vi-add-minor-mode-map vi-insert-map)
-  (setq vi-mode-line-state "insert")
-  (force-mode-line-update))
+  (vi-mode-line-change-state "insert"))
 
 (defun vi-mode (&optional arg)
   (interactive (list (or current-prefix-arg 'toggle)))
@@ -73,7 +80,7 @@
     (vi-initialize-insert-map)
     (vi-add-minor-mode-map vi-normal-map)
     (vi-init-modeline)
-    (setq vi-mode-line-state "normal")))
+    (vi-mode-line-change-state "normal")))
 
 (defun vi-mode-disable ()
   (when vi-mode
@@ -86,3 +93,7 @@
   (vi-remove-all-minor-mode-maps))
 
 (provide 'vi)
+
+(defun vi-show-modeline ()
+  (interactive)
+  (print mode-line-format))
