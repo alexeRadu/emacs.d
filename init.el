@@ -185,3 +185,7 @@
 
 (require 'evil)
 (evil-mode)
+
+;; -----------------------------------------------------------------------------
+;; Highlight current line
+(global-hl-line-mode 1)
