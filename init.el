@@ -186,6 +186,9 @@
 (require 'evil)
 (evil-mode)
 
+(evil-set-leader 'normal (kbd "<SPC>"))
+(evil-define-key 'normal 'global (kbd "<leader>g") 'magit-status)
+
 ;; -----------------------------------------------------------------------------
 ;; Highlight current line
 (global-hl-line-mode 1)
