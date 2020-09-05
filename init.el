@@ -10,7 +10,7 @@
  '(custom-enabled-themes nil)
  '(package-selected-packages
    (quote
-    (evil-magit fill-column-indicator evil magit svg company counsel-gtags ggtags neotree avy counsel swiper projectile org-bullets use-package))))
+    (zenburn-theme evil-magit fill-column-indicator evil magit svg company counsel-gtags ggtags neotree avy counsel swiper projectile org-bullets use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -202,3 +202,10 @@
 ;; -----------------------------------------------------------------------------
 ;; Evil Magit - evil keybindings for magit
 (require 'evil-magit)
+
+;; -----------------------------------------------------------------------------
+;; Doom Modeline
+(require 'all-the-icons)
+(require 'doom-modeline)
+(doom-modeline-mode 1)
+(setq doom-modeline-modal-icon nil)
