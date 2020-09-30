@@ -194,5 +194,7 @@
 (setq doom-modeline-modal-icon nil)
 
 ;; -----------------------------------------------------------------------------
-;; Doom themes
-(load-theme 'doom-one t)
+(use-package atom-one-dark-theme
+  :ensure t
+  :config
+  (load-theme 'atom-one-dark t))

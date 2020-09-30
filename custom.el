@@ -10,10 +10,10 @@
  '(custom-enabled-themes nil)
  '(custom-safe-themes
    (quote
-    ("e6ff132edb1bfa0645e2ba032c44ce94a3bd3c15e3929cdf6c049802cf059a2a" "bf387180109d222aee6bb089db48ed38403a1e330c9ec69fe1f52460a8936b66" "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "9ffe970317cdfd1a9038ee23f4f5fe0b28b99950281799e4397e1a1380123147" default)))
+    ("2cdc13ef8c76a22daa0f46370011f54e79bae00d5736340a5ddfe656a767fddf" "8d7684de9abb5a770fbfd72a14506d6b4add9a7d30942c6285f020d41d76e0fa" "990e24b406787568c592db2b853aa65ecc2dcd08146c0d22293259d400174e37" "b5fff23b86b3fd2dd2cc86aa3b27ee91513adaefeaa75adc8af35a45ffb6c499" "5d09b4ad5649fea40249dd937eaaa8f8a229db1cec9a1a0ef0de3ccf63523014" "711efe8b1233f2cf52f338fd7f15ce11c836d0b6240a18fffffc2cbd5bfe61b0" "e6ff132edb1bfa0645e2ba032c44ce94a3bd3c15e3929cdf6c049802cf059a2a" "bf387180109d222aee6bb089db48ed38403a1e330c9ec69fe1f52460a8936b66" "2f1518e906a8b60fac943d02ad415f1d8b3933a5a7f75e307e6e9a26ef5bf570" "9ffe970317cdfd1a9038ee23f4f5fe0b28b99950281799e4397e1a1380123147" default)))
  '(package-selected-packages
    (quote
-    (doom-themes zenburn-theme evil-magit fill-column-indicator evil magit svg company counsel-gtags ggtags neotree avy counsel swiper projectile org-bullets use-package))))
+    (origami doom-themes zenburn-theme evil-magit fill-column-indicator evil magit svg company counsel-gtags ggtags neotree avy counsel swiper projectile org-bullets use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
