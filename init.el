@@ -8,9 +8,11 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
+;; -----------------------------------------------------------------------------
 ;; set font to IBM Plex Mono Light
 (set-frame-font "IBM Plex Mono Light 10")
 
+;; -----------------------------------------------------------------------------
 ;; disable the bell
 (setq ring-bell-function 'ignore)
 
