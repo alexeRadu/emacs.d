@@ -171,6 +171,7 @@
 (unless (package-installed-p 'evil)
   (package-install 'evil))
 
+(setq evil-want-C-u-scroll t)
 (require 'evil)
 (evil-mode)
 
