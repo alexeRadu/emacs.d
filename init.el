@@ -200,11 +200,17 @@
 (require 'evil-magit)
 
 ;; -----------------------------------------------------------------------------
-;; Doom Modeline
-(require 'all-the-icons)
-(require 'doom-modeline)
-(doom-modeline-mode 1)
-(setq doom-modeline-modal-icon nil)
+;; Smart Mode Line (package & theme)
+(use-package smart-mode-line-atom-one-dark-theme
+  :ensure t)
+
+(use-package smart-mode-line
+  :ensure t
+  :config
+  (progn
+    (setq sml/theme 'atom-one-dark)
+    (sml/setup))
+  )
 
 ;; -----------------------------------------------------------------------------
 (use-package atom-one-dark-theme
