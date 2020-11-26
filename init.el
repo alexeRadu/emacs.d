@@ -58,6 +58,22 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
+;; -----------------------------------------------------------------------------
+;; Org-mode
+(require 'ob-ipython)
+(require 'ob-python)
+
+(use-package org
+  :ensure t
+  :config
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((ipython . t)
+     (python . t)))
+  (org-display-inline-images)
+  (add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
+  (setq org-babel-confirm-evaluate nil))
+
 (use-package org-bullets
   :ensure t
   :config
