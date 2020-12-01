@@ -1,4 +1,3 @@
 * List of improvements to the setup
 ** [ ] profile startup time (linux)
-** [ ] shortcut for 'delete inside quots' - di'                :evil:
 ** [ ] shortcut (from doom/spacemacs) for C-c C-c (execute)    :orgmode:evil:
