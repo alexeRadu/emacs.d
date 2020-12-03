@@ -11,26 +11,24 @@
 (load custom-file)
 
 ;; -----------------------------------------------------------------------------
-;; Initialize packages
-;; TODO: what all those calls mean? Can I trim them down? If all are needed
-;; add some comments to explain what is done and why.
+;; Package Management Initialization
 (require `package)
 (setq package-enable-at-startup nil)
 (package-initialize)
 
-;; -----------------------------------------------------------------------------
-;; Package sources
+;; Add additional package archives.As of right now only melpa is used.
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
 
-;; make "~/.emacs.d/lisp" directory as the primary location of my elisp code
-(push "~/.emacs.d/lisp" load-path)
-
-;; -----------------------------------------------------------------------------
 ;; Install 'use-package'. This is needed for installing all the other packages
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+;; All my custom code/packages is located in "~/.emacs.d/lisp"
+;; Add it to load-path as well
+(push "~/.emacs.d/lisp" load-path)
+
 
 ;; -----------------------------------------------------------------------------
 ;; TODO: group all 'visual' settings
