@@ -10,7 +10,18 @@
 
 ;; -----------------------------------------------------------------------------
 ;; set font to IBM Plex Mono Light
-(set-frame-font "IBM Plex Mono Light 10")
+;; Set different font size on different platforms since I'm using different
+;; screen sizes
+;; TODO: maybe font size should be changed based on the screen size and not
+;; system-type
+(cond
+ ((string-equal system-type "windows-nt")
+  (progn
+    (set-frame-font "IBM Plex Mono Light 9")))
+ ((string-equal system-type "gnu/linux")
+  (progn
+    (set-frame-font "IBM Plex Mono Light 10"))))
+
 
 ;; -----------------------------------------------------------------------------
 ;; disable the bell
