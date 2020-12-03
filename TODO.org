@@ -1,3 +1,10 @@
 * List of improvements to the setup
 ** [ ] profile startup time (linux)
 ** [ ] shortcut (from doom/spacemacs) for C-c C-c (execute)    :orgmode:evil:
+** [ ] investigate if org-bullets can be made faster on windows
+** [ ] make magit faster on windows                            :magit:
+** [ ] fix magit push (why it doesn't work)                    :magit:
+** [ ] install a trailing-whitespaces packages
+** [ ] when discarding a chunk don't ask for y-or-n            :magit:
+** [ ] copy/paste from system clipboard
+** [ ] tab configuration (for c lang and others) + change it on the fly

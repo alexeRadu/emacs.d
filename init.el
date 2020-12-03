@@ -1,16 +1,76 @@
+;; Setting appear in the order of importance:
+;; For example I want evil to be before any other packages because if the 'init'
+;; fails then at least I want to have the vim-keybindings enabled
+;;
+;; The same rationale is applied to the rest of the packages/settings. But their
+;; importance changes with their stability and utility
+
+;; -----------------------------------------------------------------------------
+;; Custom file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 (load custom-file)
+
+;; -----------------------------------------------------------------------------
+;; Initialize packages
+;; TODO: what all those calls mean? Can I trim them down? If all are needed
+;; add some comments to explain what is done and why.
+(require `package)
+(setq package-enable-at-startup nil)
+(package-initialize)
+
+;; -----------------------------------------------------------------------------
+;; Package sources
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
 
 ;; make "~/.emacs.d/lisp" directory as the primary location of my elisp code
 (push "~/.emacs.d/lisp" load-path)
 
+;; -----------------------------------------------------------------------------
+;; Install 'use-package'. This is needed for installing all the other packages
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;; -----------------------------------------------------------------------------
+;; TODO: group all 'visual' settings
 (menu-bar-mode -1)
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
 ;; -----------------------------------------------------------------------------
 ;; set font to IBM Plex Mono Light
-(set-frame-font "IBM Plex Mono Light 10")
+;; Set different font size on different platforms since I'm using different
+;; screen sizes
+;; TODO: maybe font size should be changed based on the screen size and not
+;; system-type
+(cond
+ ((string-equal system-type "windows-nt")
+  (progn
+    (set-frame-font "IBM Plex Mono Light 9")))
+ ((string-equal system-type "gnu/linux")
+  (progn
+    (set-frame-font "IBM Plex Mono Light 10"))))
+
+;; -----------------------------------------------------------------------------
+;; Evil Mode
+;; TODO: use 'use-package' to install packages
+(unless (package-installed-p 'evil)
+  (package-install 'evil))
+
+(setq evil-want-C-u-scroll t)
+(require 'evil)
+(evil-mode)
+
+(evil-set-leader 'normal (kbd "<SPC>"))
+(evil-define-key 'normal 'global (kbd "<leader>g") 'magit-status)
+
+;; Files
+(evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
+
+;; Buffers
+(evil-define-key 'normal 'global (kbd "<leader>bb") 'ivy-switch-buffer)
+
 
 ;; -----------------------------------------------------------------------------
 ;; disable the bell
@@ -61,24 +121,12 @@
 
 (global-set-key (kbd "M-*") 'pop-tag-mark)
 
-(require `package)
-(setq package-enable-at-startup nil)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
-(package-initialize)
-
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
 ;; -----------------------------------------------------------------------------
 ;; Org-mode
-(require 'ob-ipython)
-(require 'ob-python)
-
 (use-package org
   :ensure t
   :config
+  (require 'ob-python)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((ipython . t)
@@ -88,10 +136,16 @@
   (setq org-babel-confirm-evaluate nil))
 
 (use-package org-bullets
+  :if (string-equal system-type "gnu/linux")
   :ensure t
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
+(use-package ob-ipython
+  :after org
+  :ensure t)
+
+;; -----------------------------------------------------------------------------
 (use-package counsel
   :ensure t
   )
