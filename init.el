@@ -110,12 +110,10 @@
 
 ;; -----------------------------------------------------------------------------
 ;; Org-mode
-;(require 'ob-ipython)
-;(require 'ob-python)
-
 (use-package org
   :ensure t
   :config
+  (require 'ob-python)
   (org-babel-do-load-languages
    'org-babel-load-languages
    '((ipython . t)
@@ -130,7 +128,11 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
+(use-package ob-ipython
+  :after org
+  :ensure t)
 
+;; -----------------------------------------------------------------------------
 (use-package counsel
   :ensure t
   )
