@@ -125,6 +125,7 @@
   (setq org-babel-confirm-evaluate nil))
 
 (use-package org-bullets
+  :if (string-equal system-type "gnu/linux")
   :ensure t
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
