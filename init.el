@@ -19,6 +19,19 @@
 ;; change cursor shape to be a vertical line to better match modern editors
 (setq-default cursor-type 'bar)
 
+;; -----------------------------------------------------------------------------
+;; function to evaluate a top level sexp when with the cursor inside it
+(defun ra/eval-sexp ()
+  (interactive)
+  (save-excursion
+    (ignore-errors
+	(while t
+	  (up-list -1 t)))
+    (if (equal (following-char) ?\()
+	(progn
+	  (forward-sexp)
+	  (eval-last-sexp nil)))))
+
 ;; Unbind 'C-x f'
 ;; I almost always hit this keybinding when I try to open a new file
 (global-unset-key "\C-xf")
@@ -199,6 +212,9 @@
 
 ;; Buffers
 (evil-define-key 'normal 'global (kbd "<leader>bb") 'ivy-switch-buffer)
+
+;; Lisp evaluation
+(evil-define-key 'normal 'global (kbd "<leader>e") 'ra/eval-sexp)
 
 
 ;; -----------------------------------------------------------------------------
