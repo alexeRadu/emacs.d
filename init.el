@@ -234,18 +234,14 @@
 (global-display-line-numbers-mode)
 
 ;; -----------------------------------------------------------------------------
-;; Ruler at 80 chars
-;;
-;; I use fill-column-indicator.
-;; TODO: there a lot of settings, customizations and issues. To read and see additional
-;; usefull settings.
-(unless (package-installed-p 'fill-column-indicator)
-  (package-install 'fill-column-indicator))
-
-(require 'fill-column-indicator)
-(define-globalized-minor-mode global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(global-fci-mode 1)
-(setq fci-rule-column 80)
+;; Ruler at 80 chars - using fill-column-indicator
+(use-package fill-column-indicator
+  :ensure t
+  :commands turn-on-fci-mode
+  :init
+  (add-hook 'prog-mode-hook 'turn-on-fci-mode)
+  (add-hook 'text-mode-hook 'turn-on-fci-mode)
+  (setq fci-rule-column 80))
 
 ;; -----------------------------------------------------------------------------
 ;; Evil Mode
