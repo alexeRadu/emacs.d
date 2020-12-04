@@ -52,22 +52,22 @@
 
 ;; -----------------------------------------------------------------------------
 ;; Evil Mode
-;; TODO: use 'use-package' to install packages
-(unless (package-installed-p 'evil)
-  (package-install 'evil))
+(use-package evil
+  :ensure t
+  :defer .1
+  :config
+  (evil-mode 1)
+  (setq evil-want-C-u-scroll t)
 
-(setq evil-want-C-u-scroll t)
-(require 'evil)
-(evil-mode)
+  (evil-set-leader 'normal (kbd "<SPC>"))
+  (evil-define-key 'normal 'global (kbd "<leader>g") 'magit-status)
 
-(evil-set-leader 'normal (kbd "<SPC>"))
-(evil-define-key 'normal 'global (kbd "<leader>g") 'magit-status)
+  ;; Files
+  (evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
 
-;; Files
-(evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
-
-;; Buffers
-(evil-define-key 'normal 'global (kbd "<leader>bb") 'ivy-switch-buffer)
+  ;; Buffers
+  (evil-define-key 'normal 'global (kbd "<leader>bb") 'ivy-switch-buffer)
+  )
 
 
 ;; -----------------------------------------------------------------------------
