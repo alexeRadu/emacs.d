@@ -5,6 +5,8 @@
 ;; The same rationale is applied to the rest of the packages/settings. But their
 ;; importance changes with their stability and utility
 
+(setq gc-cons-threshold (eval-when-compile (* 1024 1024 1024)))
+
 ;; -----------------------------------------------------------------------------
 ;; Custom file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
