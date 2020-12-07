@@ -61,6 +61,13 @@
   (evil-mode 1)
   (setq evil-want-C-u-scroll t)
 
+  (defun ra/kill-buffer ()
+    (interactive)
+    (let ((funcs kill-buffer-query-functions))
+      (setq kill-buffer-query-functions nil)
+      (kill-buffer (current-buffer))
+      (setq kill-buffer-query-functions funcs)))
+
   (evil-set-leader 'normal (kbd "<SPC>"))
   (evil-define-key 'normal 'global (kbd "<leader>g") 'magit-status)
 
@@ -69,6 +76,7 @@
 
   ;; Buffers
   (evil-define-key 'normal 'global (kbd "<leader>bb") 'ivy-switch-buffer)
+  (evil-define-key 'normal 'global (kbd "<leader>bk") 'ra/kill-buffer)
   )
 
 
