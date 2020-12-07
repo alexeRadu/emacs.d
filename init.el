@@ -244,28 +244,6 @@
   (setq fci-rule-column 80))
 
 ;; -----------------------------------------------------------------------------
-;; Evil Mode
-(unless (package-installed-p 'evil)
-  (package-install 'evil))
-
-(setq evil-want-C-u-scroll t)
-(require 'evil)
-(evil-mode)
-
-(evil-set-leader 'normal (kbd "<SPC>"))
-(evil-define-key 'normal 'global (kbd "<leader>g") 'magit-status)
-
-;; Files
-(evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
-
-;; Buffers
-(evil-define-key 'normal 'global (kbd "<leader>bb") 'ivy-switch-buffer)
-
-;; Lisp evaluation
-(evil-define-key 'normal 'global (kbd "<leader>e") 'ra/eval-sexp)
-
-
-;; -----------------------------------------------------------------------------
 ;; Highlight current line
 (global-hl-line-mode 1)
 
