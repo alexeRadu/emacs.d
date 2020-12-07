@@ -259,7 +259,7 @@
 
 ;; -----------------------------------------------------------------------------
 ;; Evil Magit - evil keybindings for magit
-(require 'evil-magit)
+;;(require 'evil-magit)
 
 ;; -----------------------------------------------------------------------------
 ;; Smart Mode Line (package & theme)
