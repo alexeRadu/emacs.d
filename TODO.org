@@ -11,3 +11,4 @@
 ** [ ] copy/paste from system clipboard
 ** [ ] tab configuration (for c lang and others) + change it on the fly
 ** [ ] configure dired to use evil mode                        :dired:evil:
+** [ ] dired to use only buffer                                :dired:
