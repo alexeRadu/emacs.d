@@ -1,6 +1,5 @@
 * List of improvements to the setup
 ** [ ] profile emacs to improve speed
-*** [ ] make script in windows to do startup profile
 *** [ ] replace 'evil-magit' packet that starts faster
 *** [ ] profile magit startup
 ** [ ] shortcut (from doom/spacemacs) for C-c C-c (execute)    :orgmode:evil:
