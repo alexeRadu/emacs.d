@@ -125,6 +125,7 @@
 ;; Org-mode
 (use-package org
   :ensure t
+  :defer t
   :config
   (require 'ob-python)
   (org-babel-do-load-languages
@@ -148,6 +149,7 @@
 ;; -----------------------------------------------------------------------------
 (use-package counsel
   :ensure t
+  :defer t
   )
 
 (use-package swiper
