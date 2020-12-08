@@ -1,9 +1,10 @@
 * List of improvements to the setup
 ** [ ] profile emacs to improve speed
 *** [ ] replace 'evil-magit' packet that starts faster         :magit:evil:
-*** [ ] profile magit startup                                  :magit:
+*** [ ] profile magit startup                                  :magit:windows:
+*** [ ] profile opening a file (seems to take too long)        :windows:
 ** [ ] shortcut (from doom/spacemacs) for C-c C-c (execute)    :orgmode:evil:
-** [ ] investigate if org-bullets can be made faster on windows
+** [ ] investigate if org-bullets can be made faster           :windows:
 ** [ ] make magit faster on windows                            :magit:
 ** [ ] fix magit push (why it doesn't work)                    :magit:
 ** [ ] install a trailing-whitespaces packages
