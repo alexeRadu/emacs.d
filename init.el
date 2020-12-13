@@ -57,9 +57,11 @@
 (use-package evil
   :ensure t
   :defer .1
+  :init
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-keybinding nil)
   :config
   (evil-mode 1)
-  (setq evil-want-C-u-scroll t)
 
   (defun ra/kill-buffer ()
     (interactive)
@@ -78,6 +80,12 @@
   (evil-define-key 'normal 'global (kbd "<leader>bb") 'ivy-switch-buffer)
   (evil-define-key 'normal 'global (kbd "<leader>bk") 'ra/kill-buffer)
   )
+
+(use-package evil-collection
+  :after evil
+  :ensure t
+  :config
+  (evil-collection-init))
 
 
 ;; -----------------------------------------------------------------------------
