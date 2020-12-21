@@ -87,6 +87,29 @@
   :config
   (evil-collection-init))
 
+;; -----------------------------------------------------------------------------
+;; some utils for debugging
+(setq start-emacs-process nil)
+(setq start-emacs-default-command "emacs -q -l ~/.emacs.d/lisp/vi.el")
+(setq start-emacs-command-history nil)
+
+(defun start-emacs-with-command (command)
+  (interactive (list (read-string
+		      "Start emacs: "
+		      (if (null start-emacs-command-history)
+			  start-emacs-default-command
+			(car start-emacs-command-history))
+		      nil nil)))
+
+  ;; Save command in history
+  (if (null start-emacs-command-history)
+      (setq start-emacs-command-history (list command))
+    (setq start-emacs-command-history (cons command (delete command start-emacs-command-history))))
+
+  ;; run command in a new process
+  (if (or (null start-emacs-process)
+	  (eq (process-status start-emacs-process) 'exit))
+      (setq start-emacs-process (start-process-shell-command "start-emacs" "*start-emacs*" command))))
 
 ;; -----------------------------------------------------------------------------
 ;; disable the bell
