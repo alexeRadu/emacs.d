@@ -76,6 +76,8 @@
 (defun vi-mode-enable ()
   (unless vi-mode
     (setq vi-mode t)
+    (unless (member 'vi-mode-disable minibuffer-setup-hook)
+      (add-hook 'minibuffer-setup-hook 'vi-mode-disable))
     (vi-initialize-normal-map)
     (vi-initialize-insert-map)
     (vi-add-minor-mode-map vi-normal-map)
@@ -85,6 +87,8 @@
 (defun vi-mode-disable ()
   (when vi-mode
     (setq vi-mode nil)
+    (unless (member 'vi-mode-enable minibuffer-exit-hook)
+      (add-hook 'minibuffer-exit-hook 'vi-mode-enable))
     (vi-clear-modeline)
     (vi-remove-all-minor-mode-maps)))
 
