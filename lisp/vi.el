@@ -1,6 +1,6 @@
 (defvar vi-mode nil)
-(defvar vi-insert-map nil)
-(defvar vi-normal-map nil)
+(defvar vi-insert-map '(keymap))
+(defvar vi-normal-map '(keymap))
 (defvar vi-mode-line-state nil)
 (defvar vi-unload-function nil)
 
@@ -71,44 +71,38 @@
   (previous-line)
   (vi-switch-to-insert-state))
 
-(defun vi-initialize-normal-map ()
-  (unless vi-normal-map
-    (setq vi-normal-map (make-keymap))
+;; left-right movement commands
+(define-key vi-normal-map "l" 'vi-goto-next-char)
+(define-key vi-normal-map "h" 'vi-goto-prev-char)
+(define-key vi-normal-map "0" 'move-beginning-of-line)
+(define-key vi-normal-map "^" 'back-to-indentation)
+(define-key vi-normal-map "$" 'move-end-of-line)
 
-    ;; left-right movement commands
-    (define-key vi-normal-map "l" 'vi-goto-next-char)
-    (define-key vi-normal-map "h" 'vi-goto-prev-char)
-    (define-key vi-normal-map "0" 'move-beginning-of-line)
-    (define-key vi-normal-map "^" 'back-to-indentation)
-    (define-key vi-normal-map "$" 'move-end-of-line)
+;; word-movement commands
+(define-key vi-normal-map "w" 'forward-to-word)
+(define-key vi-normal-map "e" 'forward-word)
+(define-key vi-normal-map "b" 'backward-word)
 
-    ;; word-movement commands
-    (define-key vi-normal-map "w" 'forward-to-word)
-    (define-key vi-normal-map "e" 'forward-word)
-    (define-key vi-normal-map "b" 'backward-word)
+;; line movement commands
+(define-key vi-normal-map "j" 'next-line)
+(define-key vi-normal-map "k" 'previous-line)
+(define-key vi-normal-map "G" 'end-of-buffer)
+(define-key vi-normal-map "gg" 'beginning-of-buffer)
 
-    ;; line movement commands
-    (define-key vi-normal-map "j" 'next-line)
-    (define-key vi-normal-map "k" 'previous-line)
-    (define-key vi-normal-map "G" 'end-of-buffer)
-    (define-key vi-normal-map "gg" 'beginning-of-buffer)
+;; switch to insert state commands
+(define-key vi-normal-map "i" 'vi-switch-to-insert-state)
+(define-key vi-normal-map "I" 'vi-switch-to-insert-state-before-first-non-blank-char)
+(define-key vi-normal-map "gi" 'vi-switch-to-insert-state-before-first-char)
+(define-key vi-normal-map "a" 'vi-switch-to-insert-state-after-cursor)
+(define-key vi-normal-map "A" 'vi-switch-to-insert-state-at-end-of-line)
+(define-key vi-normal-map "o" 'vi-switch-to-insert-state-next-line)
+(define-key vi-normal-map "O" 'vi-switch-to-insert-state-prev-line)
 
-    ;; switch to insert state commands
-    (define-key vi-normal-map "i" 'vi-switch-to-insert-state)
-    (define-key vi-normal-map "I" 'vi-switch-to-insert-state-before-first-non-blank-char)
-    (define-key vi-normal-map "gi" 'vi-switch-to-insert-state-before-first-char)
-    (define-key vi-normal-map "a" 'vi-switch-to-insert-state-after-cursor)
-    (define-key vi-normal-map "A" 'vi-switch-to-insert-state-at-end-of-line)
-    (define-key vi-normal-map "o" 'vi-switch-to-insert-state-next-line)
-    (define-key vi-normal-map "O" 'vi-switch-to-insert-state-prev-line)
+(define-key vi-normal-map "x" 'delete-char)
+(define-key vi-normal-map "dd" 'kill-whole-line)
 
-    (define-key vi-normal-map "x" 'delete-char)
-    (define-key vi-normal-map "dd" 'kill-whole-line)))
-
-(defun vi-initialize-insert-map ()
-  (unless vi-insert-map
-    (setq vi-insert-map (make-keymap))
-    (define-key vi-insert-map [escape] 'vi-switch-to-normal-state)))
+;; insert mode mappings
+(define-key vi-insert-map [escape] 'vi-switch-to-normal-state)
 
 (defun vi-add-minor-mode-map (map)
   (push (cons 'vi-mode map) minor-mode-map-alist))
@@ -117,7 +111,7 @@
   (let ((rm-list nil))
     (dolist (al minor-mode-map-alist)
       (when (eq (car al) 'vi-mode)
-	(push al rm-list)))
+       (push al rm-list)))
     (dolist (al rm-list)
       (setq minor-mode-map-alist (delq al minor-mode-map-alist)))))
 
@@ -148,8 +142,6 @@
     (setq vi-mode t)
     (unless (member 'vi-mode-disable minibuffer-setup-hook)
       (add-hook 'minibuffer-setup-hook 'vi-mode-disable))
-    (vi-initialize-normal-map)
-    (vi-initialize-insert-map)
     (vi-add-minor-mode-map vi-normal-map)
     (vi-init-modeline)
     (vi-mode-line-change-state "normal")))
