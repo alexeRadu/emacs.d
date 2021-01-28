@@ -31,7 +31,9 @@
 ;; Add it to load-path as well
 (push "~/.emacs.d/lisp" load-path)
 
-
+;; Add my vi emulation
+;;(require 'vi)
+;;(vi-mode t)
 ;; -----------------------------------------------------------------------------
 ;; TODO: group all 'visual' settings
 (menu-bar-mode -1)
@@ -54,42 +56,42 @@
 
 ;; -----------------------------------------------------------------------------
 ;; Evil Mode
-(use-package evil
-  :ensure t
-  :defer .1
-  :init
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-keybinding nil)
-  :config
-  (evil-mode 1)
+;; (use-package evil
+;;   :ensure t
+;;   :defer .1
+;;   :init
+;;   (setq evil-want-C-u-scroll t)
+;;   (setq evil-want-keybinding nil)
+;;   :config
+;;   (evil-mode 1)
 
-  (defun ra/kill-buffer ()
-    (interactive)
-    (let ((funcs kill-buffer-query-functions))
-      (setq kill-buffer-query-functions nil)
-      (kill-buffer (current-buffer))
-      (setq kill-buffer-query-functions funcs)))
+;;   (defun ra/kill-buffer ()
+;;     (interactive)
+;;     (let ((funcs kill-buffer-query-functions))
+;;       (setq kill-buffer-query-functions nil)
+;;       (kill-buffer (current-buffer))
+;;       (setq kill-buffer-query-functions funcs)))
 
-  (evil-set-leader 'normal (kbd "<SPC>"))
-  (evil-define-key 'normal 'global (kbd "<leader>g") 'magit-status)
+;;   (evil-set-leader 'normal (kbd "<SPC>"))
+;;   (evil-define-key 'normal 'global (kbd "<leader>g") 'magit-status)
 
-  ;; Files
-  (evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
-  (defun ra/save-buffers-without-asking ()
-    (interactive)
-    (save-some-buffers t))
-  (evil-define-key 'normal 'global (kbd "<leader>fs") 'ra/save-buffers-without-asking)
+;;   ;; Files
+;;   (evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
+;;   (defun ra/save-buffers-without-asking ()
+;;     (interactive)
+;;     (save-some-buffers t))
+;;   (evil-define-key 'normal 'global (kbd "<leader>fs") 'ra/save-buffers-without-asking)
 
-  ;; Buffers
-  (evil-define-key 'normal 'global (kbd "<leader>bb") 'ivy-switch-buffer)
-  (evil-define-key 'normal 'global (kbd "<leader>bk") 'ra/kill-buffer)
-  )
+;;   ;; Buffers
+;;   (evil-define-key 'normal 'global (kbd "<leader>bb") 'ivy-switch-buffer)
+;;   (evil-define-key 'normal 'global (kbd "<leader>bk") 'ra/kill-buffer)
+;;   )
 
-(use-package evil-collection
-  :after evil
-  :ensure t
-  :config
-  (evil-collection-init))
+;; (use-package evil-collection
+;;   :after evil
+;;   :ensure t
+;;   :config
+;;   (evil-collection-init))
 
 ;; -----------------------------------------------------------------------------
 ;; some utils for debugging
