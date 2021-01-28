@@ -75,6 +75,10 @@
 
   ;; Files
   (evil-define-key 'normal 'global (kbd "<leader>ff") 'counsel-find-file)
+  (defun ra/save-buffers-without-asking ()
+    (interactive)
+    (save-some-buffers t))
+  (evil-define-key 'normal 'global (kbd "<leader>fs") 'ra/save-buffers-without-asking)
 
   ;; Buffers
   (evil-define-key 'normal 'global (kbd "<leader>bb") 'ivy-switch-buffer)
