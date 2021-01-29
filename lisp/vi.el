@@ -1,8 +1,31 @@
 (defvar vi-mode nil)
-(defvar vi-insert-map '(keymap))
-(defvar vi-normal-map '(keymap))
-(defvar vi-mode-line-state nil)
 (defvar vi-unload-function nil)
+
+;-------------------------------------------------------------------------------
+; mapping functions and variables
+(defvar vi-map-alist ())
+(defvar vi-insert-map (make-keymap))
+(defvar vi-normal-map (make-keymap))
+
+;; append maps to the vi-map-alist
+(push (cons "normal" 'vi-normal-map) vi-map-alist)
+(push (cons "insert" 'vi-insert-map) vi-map-alist)
+
+(defun vi-add-minor-mode-map (mode)
+  (let ((map (eval (cdr (assoc mode vi-map-alist)))))
+    (push (cons 'vi-mode map) minor-mode-map-alist)))
+
+(defun vi-remove-all-minor-mode-maps ()
+  (let ((rm-list nil))
+    (dolist (al minor-mode-map-alist)
+      (when (eq (car al) 'vi-mode)
+       (push al rm-list)))
+    (dolist (al rm-list)
+      (setq minor-mode-map-alist (delq al minor-mode-map-alist)))))
+
+;-------------------------------------------------------------------------------
+; modeline functions and variables
+(defvar vi-mode-line-state nil)
 
 (defun vi-init-modeline ()
   (dolist (buffer (buffer-list))
@@ -104,28 +127,19 @@
 ;; insert mode mappings
 (define-key vi-insert-map [escape] 'vi-switch-to-normal-state)
 
-(defun vi-add-minor-mode-map (map)
-  (push (cons 'vi-mode map) minor-mode-map-alist))
-
-(defun vi-remove-all-minor-mode-maps ()
-  (let ((rm-list nil))
-    (dolist (al minor-mode-map-alist)
-      (when (eq (car al) 'vi-mode)
-       (push al rm-list)))
-    (dolist (al rm-list)
-      (setq minor-mode-map-alist (delq al minor-mode-map-alist)))))
 
 (defun vi-switch-to-normal-state ()
   (interactive)
   (vi-remove-all-minor-mode-maps)
-  (vi-add-minor-mode-map vi-normal-map)
+  (vi-add-minor-mode-map "normal")
   (vi-mode-line-change-state "normal"))
 
 (defun vi-switch-to-insert-state ()
   (interactive)
   (vi-remove-all-minor-mode-maps)
-  (vi-add-minor-mode-map vi-insert-map)
+  (vi-add-minor-mode-map "insert")
   (vi-mode-line-change-state "insert"))
+
 
 (defun vi-mode (&optional arg)
   (interactive (list (or current-prefix-arg 'toggle)))
@@ -142,7 +156,7 @@
     (setq vi-mode t)
     (unless (member 'vi-mode-disable minibuffer-setup-hook)
       (add-hook 'minibuffer-setup-hook 'vi-mode-disable))
-    (vi-add-minor-mode-map vi-normal-map)
+    (vi-add-minor-mode-map "normal")
     (vi-init-modeline)
     (vi-mode-line-change-state "normal")))
 
