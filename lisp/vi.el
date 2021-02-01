@@ -24,6 +24,14 @@
       (setq minor-mode-map-alist (delq al minor-mode-map-alist)))))
 
 ;-------------------------------------------------------------------------------
+; cursor functions
+(defun set-cursor-type (type)
+  (save-current-buffer
+    (dolist (buffer (buffer-list))
+      (set-buffer (get-buffer-create buffer))
+      (setq cursor-type type))))
+
+;-------------------------------------------------------------------------------
 ; modeline functions and variables
 (defvar vi-mode-line-state nil)
 
@@ -31,9 +39,9 @@
   (dolist (buffer (buffer-list))
     (with-current-buffer buffer
       (unless (member 'vi-mode-line-state mode-line-format)
-	(setq mode-line-format
-	      (append (list (car mode-line-format) 'vi-mode-line-state)
-		      (cdr mode-line-format)))))))
+       (setq mode-line-format
+             (append (list (car mode-line-format) 'vi-mode-line-state)
+                     (cdr mode-line-format)))))))
 
 (defun vi-clear-modeline ()
   (when (member 'vi-mode-line-state mode-line-format)
@@ -132,13 +140,15 @@
   (interactive)
   (vi-remove-all-minor-mode-maps)
   (vi-add-minor-mode-map "normal")
-  (vi-mode-line-change-state "normal"))
+  (vi-mode-line-change-state "normal")
+  (set-cursor-type 'box))
 
 (defun vi-switch-to-insert-state ()
   (interactive)
   (vi-remove-all-minor-mode-maps)
   (vi-add-minor-mode-map "insert")
-  (vi-mode-line-change-state "insert"))
+  (vi-mode-line-change-state "insert")
+  (set-cursor-type 'bar))
 
 
 (defun vi-mode (&optional arg)
@@ -156,9 +166,8 @@
     (setq vi-mode t)
     (unless (member 'vi-mode-disable minibuffer-setup-hook)
       (add-hook 'minibuffer-setup-hook 'vi-mode-disable))
-    (vi-add-minor-mode-map "normal")
     (vi-init-modeline)
-    (vi-mode-line-change-state "normal")))
+    (vi-switch-to-normal-state)))
 
 (defun vi-mode-disable ()
   (when vi-mode
