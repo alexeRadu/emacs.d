@@ -186,3 +186,6 @@
 (defun vi-show-modeline ()
   (interactive)
   (print mode-line-format))
+
+(add-hook 'window-configuration-change-hook 'vi-init-modeline)
+
