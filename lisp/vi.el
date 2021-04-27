@@ -187,5 +187,12 @@
   (interactive)
   (print mode-line-format))
 
-(add-hook 'window-configuration-change-hook 'vi-init-modeline)
+(defun vi-visual-update ()
+  (vi-init-modeline)
+  (if (equal vi-mode-line-state "normal")
+      (set-cursor-type 'box)
+    (set-cursor-type 'bar)))
+
+(add-hook 'window-configuration-change-hook 'vi-visual-update)
+(add-hook 'emacs-startup-hook 'vi-visual-update)
 
