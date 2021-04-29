@@ -1,5 +1,4 @@
 (defvar vi-mode nil)
-(defvar vi-unload-function nil)
 
 ;-------------------------------------------------------------------------------
 ; mapping functions and variables
@@ -55,6 +54,8 @@
       (with-current-buffer buffer
 	(force-mode-line-update)))))
 
+;-------------------------------------------------------------------------------
+; vi-mode
 (defun vi-mode (&optional arg)
   (interactive (list (or current-prefix-arg 'toggle)))
   (let ((enable
@@ -80,10 +81,6 @@
       (add-hook 'minibuffer-exit-hook 'vi-mode-enable))
     (vi-clear-modeline)
     (vi-remove-all-minor-mode-maps)))
-
-(defun vi-unload-function ()
-  (vi-clear-modeline)
-  (vi-remove-all-minor-mode-maps))
 
 (provide 'vi)
 
