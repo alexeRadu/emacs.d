@@ -1,24 +1,30 @@
+
 (defvar vi-mode nil)
 
 ;-------------------------------------------------------------------------------
 (defmacro vi-define-state (state &rest body)
   (let* ((keymap (intern (format "vi-%s-map" state)))
 	 (tag    (intern (format "vi-%s-state-tag" state)))
-	 tag-value)
+	 (cursor (intern (format "vi-%s-state-cursor-shape" state)))
+	 (tag-value nil)
+	 (cursor-value 'box))
     (while (keywordp (car-safe body))
       (setq key (pop body)
 	    arg (pop body))
       (cond
        ((eq key :tag)
-	(setq tag-value arg))))
+	(setq tag-value arg))
+       ((eq key :cursor)
+	(setq cursor-value arg))))
     `(progn
        (setq ,keymap (make-keymap))
-       (setq ,tag ,tag-value))))
+       (setq ,tag ,tag-value)
+       (setq ,cursor ,cursor-value))))
 
 ;-------------------------------------------------------------------------------
 ; global variables
-(vi-define-state insert :tag "[I]")
-(vi-define-state normal :tag "[N]")
+(vi-define-state insert :tag "[I]" :cursor 'bar)
+(vi-define-state normal :tag "[N]" :cursor 'box)
 
 ;-------------------------------------------------------------------------------
 ; mapping functions and variables

@@ -53,7 +53,7 @@
   (push (cons 'vi-mode vi-normal-map) minor-mode-map-alist)
   (setq vi-mode-line-state vi-normal-state-tag)
   (vi-modeline-update)
-  (set-cursor-type 'box))
+  (set-cursor-type vi-normal-state-cursor-shape))
 
 (defun vi-switch-to-insert-state ()
   (interactive)
@@ -61,7 +61,7 @@
   (push (cons 'vi-mode vi-insert-map) minor-mode-map-alist)
   (setq vi-mode-line-state vi-insert-state-tag)
   (vi-modeline-update)
-  (set-cursor-type 'bar))
+  (set-cursor-type vi-insert-state-cursor-shape))
 
 
 ;; left-right movement commands
