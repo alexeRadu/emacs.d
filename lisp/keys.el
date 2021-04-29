@@ -50,14 +50,14 @@
 (defun vi-switch-to-normal-state ()
   (interactive)
   (vi-remove-all-minor-mode-maps)
-  (vi-add-minor-mode-map "normal")
+  (push (cons 'vi-mode vi-normal-map) minor-mode-map-alist)
   (vi-mode-line-change-state "normal")
   (set-cursor-type 'box))
 
 (defun vi-switch-to-insert-state ()
   (interactive)
   (vi-remove-all-minor-mode-maps)
-  (vi-add-minor-mode-map "insert")
+  (push (const 'vi-mode vi-insert-map) minor-mode-map-alist)
   (vi-mode-line-change-state "insert")
   (set-cursor-type 'bar))
 

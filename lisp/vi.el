@@ -1,19 +1,20 @@
 (defvar vi-mode nil)
 
 ;-------------------------------------------------------------------------------
-; mapping functions and variables
+(defmacro vi-define-state (state &rest body)
+  (let* ((keymap (intern (format "vi-%s-map" state))))
+    `(progn
+       (setq ,keymap (make-keymap)))))
+
+;-------------------------------------------------------------------------------
+; global variables
 (defvar vi-map-alist ())
-(defvar vi-insert-map (make-keymap))
-(defvar vi-normal-map (make-keymap))
 
-;; append maps to the vi-map-alist
-(push (cons "normal" 'vi-normal-map) vi-map-alist)
-(push (cons "insert" 'vi-insert-map) vi-map-alist)
+(vi-define-state insert)
+(vi-define-state normal)
 
-(defun vi-add-minor-mode-map (mode)
-  (let ((map (eval (cdr (assoc mode vi-map-alist)))))
-    (push (cons 'vi-mode map) minor-mode-map-alist)))
-
+;-------------------------------------------------------------------------------
+; mapping functions and variables
 (defun vi-remove-all-minor-mode-maps ()
   (let ((rm-list nil))
     (dolist (al minor-mode-map-alist)
