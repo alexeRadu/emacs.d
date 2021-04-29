@@ -51,14 +51,16 @@
   (interactive)
   (vi-remove-all-minor-mode-maps)
   (push (cons 'vi-mode vi-normal-map) minor-mode-map-alist)
-  (vi-mode-line-change-state "normal")
+  (setq vi-mode-line-state vi-normal-state-tag)
+  (vi-modeline-update)
   (set-cursor-type 'box))
 
 (defun vi-switch-to-insert-state ()
   (interactive)
   (vi-remove-all-minor-mode-maps)
-  (push (const 'vi-mode vi-insert-map) minor-mode-map-alist)
-  (vi-mode-line-change-state "insert")
+  (push (cons 'vi-mode vi-insert-map) minor-mode-map-alist)
+  (setq vi-mode-line-state vi-insert-state-tag)
+  (vi-modeline-update)
   (set-cursor-type 'bar))
 
 

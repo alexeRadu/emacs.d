@@ -2,16 +2,23 @@
 
 ;-------------------------------------------------------------------------------
 (defmacro vi-define-state (state &rest body)
-  (let* ((keymap (intern (format "vi-%s-map" state))))
+  (let* ((keymap (intern (format "vi-%s-map" state)))
+	 (tag    (intern (format "vi-%s-state-tag" state)))
+	 tag-value)
+    (while (keywordp (car-safe body))
+      (setq key (pop body)
+	    arg (pop body))
+      (cond
+       ((eq key :tag)
+	(setq tag-value arg))))
     `(progn
-       (setq ,keymap (make-keymap)))))
+       (setq ,keymap (make-keymap))
+       (setq ,tag ,tag-value))))
 
 ;-------------------------------------------------------------------------------
 ; global variables
-(defvar vi-map-alist ())
-
-(vi-define-state insert)
-(vi-define-state normal)
+(vi-define-state insert :tag "[I]")
+(vi-define-state normal :tag "[N]")
 
 ;-------------------------------------------------------------------------------
 ; mapping functions and variables
@@ -48,13 +55,11 @@
     (setq mode-line-format
 	  (cons (car mode-line-format) (cdr (cdr mode-line-format))))))
 
-(defun vi-mode-line-change-state (name)
-  (unless (eq vi-mode-line-state name)
-    (setq vi-mode-line-state name)
-    (dolist (buffer (buffer-list))
-      (with-current-buffer buffer
-	(force-mode-line-update)))))
-
+(defun vi-modeline-update ()
+  (dolist (buffer (buffer-list))
+    (with-current-buffer buffer
+      (force-mode-line-update))))
+    
 ;-------------------------------------------------------------------------------
 ; vi-mode
 (defun vi-mode (&optional arg)
@@ -91,7 +96,7 @@
 
 (defun vi-visual-update ()
   (vi-init-modeline)
-  (if (equal vi-mode-line-state "normal")
+  (if (equal vi-mode-line-state vi-normal-state-tag)
       (set-cursor-type 'box)
     (set-cursor-type 'bar)))
 
