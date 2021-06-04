@@ -68,7 +68,7 @@
     (set-frame-font "IBM Plex Mono Light 9")))
  ((string-equal system-type "gnu/linux")
   (progn
-    (set-frame-font "IBM Plex Mono Light 10"))))
+    (set-frame-font "IBM Plex Mono Light 11"))))
 
 ;; -----------------------------------------------------------------------------
 ;; Evil Mode
