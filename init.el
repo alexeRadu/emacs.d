@@ -342,6 +342,7 @@
   (load-theme 'atom-one-dark t))
 
 ;; -----------------------------------------------------------------------------
-;;(require 'vi)
-;;(require 'keys)
-;;(vi-mode)
+;; (require 'vi)
+;; (require 'keys)
+;; (vi-mode)
+
