@@ -13,6 +13,18 @@
 (load custom-file)
 
 ;; -----------------------------------------------------------------------------
+;; Setup for windows:
+;; - To create a single icon in the taskbar follow the instructions from this
+;;   link: https://www.emacswiki.org/emacs/MsWindowsSevenProblems
+;; - In short here are the steps:
+;;   - Go to C:/emacs/bin/ and run runemacs.exe
+;;   - Pin the icon in the taskbar
+;;   - Shift + RightClick to access properties
+;;   - Change the "Target" field to:
+;;         "C:/emacs/bin/emacsclientw.exe -c -n -a C:/emacs/bin/runemacs.exe"
+
+;; -----------------------------------------------------------------------------
+;; -----------------------------------------------------------------------------
 ;; Package Management Initialization
 (require `package)
 (setq package-enable-at-startup nil)
