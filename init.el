@@ -96,14 +96,18 @@
 ;; I almost always hit this keybinding when I try to open a new file
 (global-unset-key "\C-xf")
 
-(if (display-graphic-p)
-    (progn
-      (setq initial-frame-alist
-	    '(
-	      (width . 200)
-	      (height . 56)
-	      (left . 80)
-	      (top . 80)))))
+;(if (display-graphic-p)
+;    (progn
+;      (setq initial-frame-alist
+;	    '(
+;	      (width . 200)
+;	      (height . 56)
+;	      (left . 80)
+;	      (top . 80)))))
+
+;; start emacs maximized
+(add-hook 'emacs-startup-hook 'toggle-frame-maximized)
+
 ;(when (string-equal system-type "windows-nt")
 ;  (let (
 ;	(mypaths
