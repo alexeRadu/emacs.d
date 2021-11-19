@@ -24,11 +24,6 @@
 ;;         "C:/emacs/bin/emacsclientw.exe -c -n -a C:/emacs/bin/runemacs.exe"
 
 ;; -----------------------------------------------------------------------------
-;; Add path to git executable if under windows
-(if (string-equal system-type "windows-nt")
-    (setq exec-path (append exec-path '("C:/Program Files/Git/bin"))))
-
-;; -----------------------------------------------------------------------------
 ;; Package Management Initialization
 (require `package)
 (setq package-enable-at-startup nil)
@@ -151,18 +146,18 @@
 	      (height . 56)
 	      (left . 80)
 	      (top . 80)))))
-(when (string-equal system-type "windows-nt")
-  (let (
-	(mypaths
-	 '(
-	   "C:/emacs-26.1-x86_64/bin"
-	   "C:/cygwin64/bin"
-	   ))
-	)
-
-    (setq exec-path (append mypaths (list "." exec-directory)))
-    (setenv "PATH" (mapconcat 'identity mypaths ";"))
-    ))
+;(when (string-equal system-type "windows-nt")
+;  (let (
+;	(mypaths
+;	 '(
+;	   "C:/emacs-26.1-x86_64/bin"
+;	   "C:/cygwin64/bin"
+;	   ))
+;	)
+;
+;    (setq exec-path (append mypaths (list "." exec-directory)))
+;    (setenv "PATH" (mapconcat 'identity mypaths ";"))
+;    ))
 
 (setq inhibit-startup-message t)
 
