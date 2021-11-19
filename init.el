@@ -24,6 +24,10 @@
 ;;         "C:/emacs/bin/emacsclientw.exe -c -n -a C:/emacs/bin/runemacs.exe"
 
 ;; -----------------------------------------------------------------------------
+;; Add path to git executable if under windows
+(if (string-equal system-type "windows-nt")
+    (setq exec-path (append exec-path '("C:/Program Files/Git/bin"))))
+
 ;; -----------------------------------------------------------------------------
 ;; Package Management Initialization
 (require `package)
@@ -338,6 +342,6 @@
   (load-theme 'atom-one-dark t))
 
 ;; -----------------------------------------------------------------------------
-(require 'vi)
-(require 'keys)
-(vi-mode)
+;;(require 'vi)
+;;(require 'keys)
+;;(vi-mode)
