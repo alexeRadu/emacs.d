@@ -278,3 +278,30 @@
   :ensure t
   :config
   (load-theme 'atom-one-dark t))
+
+;; -----------------------------------------------------------------------------
+;; Dired
+(progn
+  (require 'dired)
+  (define-key dired-mode-map (kbd "h") 'dired-up-directory)
+  (define-key dired-mode-map (kbd "j") 'dired-next-line)
+  (define-key dired-mode-map (kbd "k") 'dired-previous-line)
+  (define-key dired-mode-map (kbd "l") 'dired-find-file)
+
+  ;; other settings
+  ;; on windows dired uses and emulated lisp ls; in order to show directories
+  ;; first variable `ls-lisp-dirs-first` should be set to `t`
+  (when (string-equal system-type "windows-nt")
+    (setq ls-lisp-dirs-first t))
+  )
+
+(defun kill-all-dired-buffers ()
+  (interactive)
+  (save-excursion
+    (let ((count 0))
+      (dolist (buffer (buffer-list))
+	(set-buffer buffer)
+	(when (equal major-mode 'dired-mode)
+	  (setq count (1+ count))
+	  (kill-buffer buffer))
+	(message "Killed %i dired buffer(s)." count)))))
