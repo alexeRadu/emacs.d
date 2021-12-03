@@ -291,8 +291,10 @@
   ;; other settings
   ;; on windows dired uses and emulated lisp ls; in order to show directories
   ;; first variable `ls-lisp-dirs-first` should be set to `t`
-  (when (string-equal system-type "windows-nt")
-    (setq ls-lisp-dirs-first t))
+  (if (string-equal system-type "windows-nt")
+      (setq ls-lisp-dirs-first t))
+  (if (string-equal system-type "gnu/linux")
+      (setq dired-listing-switches "-al --group-directories-first"))
   )
 
 (defun kill-all-dired-buffers ()
