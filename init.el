@@ -73,6 +73,13 @@
       (setq start-emacs-process (start-process-shell-command "start-emacs" "*start-emacs*" command))))
 
 ;; -----------------------------------------------------------------------------
+;; Usefull functions
+(defun save-buffer-as (filename)
+  (interactive "F")
+  (write-region (point-min) (point-max) filename)
+  (find-file filename))
+
+;; -----------------------------------------------------------------------------
 ;; disable the bell
 (setq ring-bell-function 'ignore)
 
