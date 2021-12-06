@@ -115,18 +115,12 @@
 ;; start emacs maximized
 (add-hook 'emacs-startup-hook 'toggle-frame-maximized)
 
-;(when (string-equal system-type "windows-nt")
-;  (let (
-;	(mypaths
-;	 '(
-;	   "C:/emacs-26.1-x86_64/bin"
-;	   "C:/cygwin64/bin"
-;	   ))
-;	)
-;
-;    (setq exec-path (append mypaths (list "." exec-directory)))
-;    (setenv "PATH" (mapconcat 'identity mypaths ";"))
-;    ))
+(when (string-equal system-type "windows-nt")
+  (let ((default-paths (split-string (getenv "PATH") ";"))
+	(mypaths '("C:\\emacs\\bin")))
+    (setq exec-path (append mypaths default-paths))
+    (setenv "PATH" (mapconcat 'identity exec-path ";"))
+    ))
 
 (setq inhibit-startup-message t)
 
