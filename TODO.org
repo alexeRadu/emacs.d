@@ -12,4 +12,9 @@
 ** [ ] copy/paste from system clipboard
 ** [ ] tab configuration (for c lang and others) + change it on the fly
 ** [ ] configure dired to use evil mode                        :dired:evil:
-** [ ] dired to use only buffer                                :dired:
+** [ ] dired: to use only buffer
+** [ ] dired: bookmarks
+** [ ] dired: search narrows the list of files
+** [ ] dired: fuzzy-search recursive filename (maybe use fzf?)
+** [ ] dired: if file requires administrative rights, ask for them
+** [ ] dired: fuzzy-search contents in files recursively
