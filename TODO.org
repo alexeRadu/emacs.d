@@ -8,3 +8,5 @@
 ** [ ] dired: fuzzy-search recursive filename (maybe use fzf?)
 ** [ ] dired: if file requires administrative rights, ask for them
 ** [ ] dired: fuzzy-search contents in files recursively
+** [ ] dired: show in a floating window
+** [ ] dired: auto-refresh after a deletion (or other actions?)
