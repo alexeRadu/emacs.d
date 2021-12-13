@@ -10,3 +10,4 @@
 ** [ ] dired: fuzzy-search contents in files recursively
 ** [ ] dired: show in a floating window
 ** [ ] dired: auto-refresh after a deletion (or other actions?)
+** [ ] calendar: function to show whole year
