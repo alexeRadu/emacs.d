@@ -289,6 +289,8 @@
   (define-key dired-mode-map (kbd "k") 'dired-previous-line)
   (define-key dired-mode-map (kbd "l") 'dired-find-file)
 
+  (setq dired-dwim-target t)
+
   ;; other settings
   ;; on windows dired uses and emulated lisp ls; in order to show directories
   ;; first variable `ls-lisp-dirs-first` should be set to `t`
