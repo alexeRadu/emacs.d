@@ -1,0 +1,25 @@
+* Learning Emacs
+** Dired
+   Commands used and their keybindings
+   
+   |---------+-------------+------------------------+-------------------------|
+   | Mapping | New Mapping | Command                | Description             |
+   |---------+-------------+------------------------+-------------------------|
+   |   <c>   |     <c>     |                        |                         |
+   |  Enter  |      l      | dired-find-file        | in                      |
+   |    q    |             | quit-window            |                         |
+   |    g    |             | revert-buffer          | refresh buffer contents |
+   |    ^    |      h      | dired-up-directory     | out                     |
+   |    >    |      j      | dired-next-dirline     | down                    |
+   |    <    |      k      | dired-prev-dirline     | up                      |
+   |---------+-------------+------------------------+-------------------------|
+   |    C    |             | dired-do-copy          |                         |
+   |    R    |             | dired-do-rename        |                         |
+   |    D    |             | dired-do-delete        |                         |
+   |    +    |             | dired-create-directory |                         |
+   |    m    |             | dired-mark             |                         |
+   |    u    |             | dired-unmark           |                         |
+   |    U    |             | dired-unmark-all-marks |                         |
+   |---------+-------------+------------------------+-------------------------|
+
+
