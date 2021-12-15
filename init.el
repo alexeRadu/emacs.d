@@ -287,12 +287,20 @@
 ;; Dired
 (progn
   (require 'dired)
-  (define-key dired-mode-map (kbd "h") 'dired-up-directory)
+  (define-key dired-mode-map (kbd "h") (lambda() (interactive) (find-alternate-file "..")))
   (define-key dired-mode-map (kbd "j") 'dired-next-line)
   (define-key dired-mode-map (kbd "k") 'dired-previous-line)
-  (define-key dired-mode-map (kbd "l") 'dired-find-file)
+  (define-key dired-mode-map (kbd "l") 'dired-find-alternate-file)
 
   (setq dired-dwim-target t)
+
+  ;; allow dired to delete or copy directories
+  (setq dired-recursive-copies 'always) ;; never ask
+  (setq dired-recursive-deletes 'top)   ;; ask only once
+
+  (add-hook 'dired-mode-hook
+	    (lambda ()
+	      (dired-hide-details-mode 1)))
 
   ;; other settings
   ;; on windows dired uses and emulated lisp ls; in order to show directories
@@ -329,3 +337,4 @@
 (use-package cmake-mode
   :ensure t)
 (put 'downcase-region 'disabled nil)
+(put 'dired-find-alternate-file 'disabled nil)
