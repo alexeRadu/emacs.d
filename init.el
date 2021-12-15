@@ -48,6 +48,8 @@
 (toggle-scroll-bar -1)
 (tool-bar-mode -1)
 
+(fset 'yes-or-no-p 'y-or-n-p)
+
 ;; -----------------------------------------------------------------------------
 ;; some utils for debugging
 (setq start-emacs-process nil)
@@ -117,7 +119,8 @@
 
 (when (string-equal system-type "windows-nt")
   (let ((default-paths (split-string (getenv "PATH") ";"))
-	(mypaths '("C:\\emacs\\bin")))
+	(mypaths '("C:\\emacs\\bin"
+		   "C:\\bin")))
     (setq exec-path (append mypaths default-paths))
     (setenv "PATH" (mapconcat 'identity exec-path ";"))
     ))
@@ -325,3 +328,4 @@
 
 (use-package cmake-mode
   :ensure t)
+(put 'downcase-region 'disabled nil)
