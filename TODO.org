@@ -2,7 +2,6 @@
 ** [ ] install a trailing-whitespaces packages
 ** [ ] copy/paste from system clipboard
 ** [ ] tab configuration (for c lang and others) + change it on the fly
-** [ ] dired: to use only buffer
 ** [ ] dired: bookmarks
 ** [ ] dired: search narrows the list of files
 ** [ ] dired: fuzzy-search recursive filename (maybe use fzf?)
