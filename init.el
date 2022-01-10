@@ -338,3 +338,16 @@
   :ensure t)
 (put 'downcase-region 'disabled nil)
 (put 'dired-find-alternate-file 'disabled nil)
+
+;; completion functions
+(defun my/fuzzy-find-completion (string predicate type)
+  (let ((files (directory-files-recursively default-directory string)))
+    (if (listp files)
+	files
+      nil)))
+
+(defun my/fuzzy-find ()
+  (interactive)
+  (require 'ivy)
+  (ivy-read "fuzzy-find: " 'my/fuzzy-find-completion))
+
