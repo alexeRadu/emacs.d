@@ -340,6 +340,7 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 ;; completion functions
+;; TODO: test using (start-process-shell-command "test" "foo" "powershell -command \"get-childitem -recurse -name\"")
 (defun my/fuzzy-find-completion (string predicate type)
   (let ((files (directory-files-recursively default-directory string)))
     (if (listp files)
