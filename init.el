@@ -353,3 +353,12 @@
   (require 'ivy)
   (ivy-read "fuzzy-find: " 'my/fuzzy-find-completion))
 
+
+;;(defun my/fuzzy-find-completion (string predicate type)
+;;  (counsel--async-command (format "powershell -command \"get-childitem -recurse -name %s\"" string)))
+
+;;(setq test-proc (make-process :name "test-proc"
+;;			      :buffer " *test-output*"
+;;			      :command (list "powershell" "-command"
+;;					     (format "Get-ChildItem . -Recurse -Name | Select-String -Pattern '%s'" "emacs"))
+;;			      ))
