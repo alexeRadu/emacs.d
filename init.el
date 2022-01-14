@@ -41,6 +41,7 @@
 ;; All my custom code/packages is located in "~/.emacs.d/lisp"
 ;; Add it to load-path as well
 (push "~/.emacs.d/lisp" load-path)
+(require 'ww)
 
 ;; -----------------------------------------------------------------------------
 ;; TODO: group all 'visual' settings
