@@ -1,13 +1,11 @@
-(require 'cl-extra)
-
 (defun prev-monday-date ()
   (let ((day-in-sec (* 60 60 24))
-	(days-since-monday (- (cl-parse-integer (format-time-string "%u")) 1)))
+	(days-since-monday (- (string-to-number (format-time-string "%u")) 1)))
     (format-time-string "%D" (- (float-time) (* days-since-monday day-in-sec)))))
 
 (defun next-sunday-date ()
   (let ((day-in-sec (* 60 60 24))
-	(days-to-sunday (- 7 (cl-parse-integer (format-time-string "%u")))))
+	(days-to-sunday (- 7 (string-to-number (format-time-string "%u")))))
     (format-time-string "%D" (+ (float-time) (* days-to-sunday day-in-sec)))))
 
 (defun insert-ww-timestamp ()
@@ -44,7 +42,7 @@
 
 (defun my/find-or-create-ww-document ()
   (interactive)
-  (let* ((ww (- (cl-parse-integer (format-time-string "%w")) 1))
+  (let* ((ww (string-to-number (format-time-string "%W")))
 	 (ww-path (format "c:/Users/nxa06732/Documents/WRs/%s/ww%d.org"
 			  (format-time-string "%Y")
 			  ww)))
@@ -72,8 +70,5 @@
       )
     )
   )
-
-
-  
 
 (provide 'ww)
